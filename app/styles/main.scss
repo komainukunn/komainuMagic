@@ -1,3 +1,60 @@
 $icon-font-path: "../fonts/";
 
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
+@import "Zabuto-Calendar/zabuto_calendar.css";
+
+/*============================================================
+    ヘッターー
+==============================================================*/
+header.jumbotron {
+    background: url("../images/header_back_image_b.jpg");
+    background-position: center center;
+    background-size: cover;
+    color: rgba(255, 255, 255, 1);
+}
+
+header .container {
+    margin-top: 13%;
+    background: rgba(33, 33, 44, 0.7);
+}
+
+header .midashi-btn {
+    border: 1px solid #fff;
+    color:  rgba(255, 255, 255, 1);
+    border-radius: 0;
+}
+
+header .midashi-btn:hover {
+    color: rgba(0, 137, 255, 1);
+    border-color: rgba(0, 137, 255, 1);
+}
+/*============================================================
+    メイン
+==============================================================*/
+
+.main-content .content-area {
+  padding: 20px 15px;
+}
+
+/*============================================================
+    サイドバー
+==============================================================*/
+
+.sidebar aside {
+  background: rgba(240, 240, 240, 1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/*============================================================
+    フッター
+==============================================================*/
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background: rgba(16, 16, 16, 1);
+}
+footer p{
+    color: rgba(255, 255, 255, 1);
+}
