@@ -1,6 +1,6 @@
 var React = require("react");
-var apiUrl = "https://komainukunn.herokuapp.com/api";
-apiUrl = "http://localhost:5000/api";
+var apiUrl = "https://komainukunn.herokuapp.com/api/new-article";
+apiUrl = "http://localhost:5000/api/new-article";
 
 var brogArticle = React.createClass({
   getInitialState: function() {
