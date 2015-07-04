@@ -2,6 +2,8 @@ var React = require("react");
 var apiUrl = "https://komainukunn.herokuapp.com/api/new-article";
 apiUrl = "http://localhost:5000/api/new-article";
 
+var accountRequire = require("./account");
+
 var brogArticle = React.createClass({
   getInitialState: function() {
     return {data: []};
@@ -37,7 +39,9 @@ var brogArticle = React.createClass({
   }
 });
 
-React.render(
-    React.createFactory(brogArticle)({url: apiUrl}), document.getElementById("brogContext")
-);
+if(document.getElementById("brogContext")){
+    React.render(
+        React.createFactory(brogArticle)({url: apiUrl}), document.getElementById("brogContext")
+    );
+}
 
