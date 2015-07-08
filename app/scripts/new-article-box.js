@@ -10,8 +10,11 @@ module.exports = function(React, appUsed){
                 url: appUsed.url+"/api/new-article",
                 dataType: 'json',
                 cache: false,
-                success: function(data) {
-                    this.setState({api: data});
+                success: function(json) {
+                    this.setState({api: json});
+                    appUsed.result=json.result;
+                    appUsed.message=json.message;
+                    require("./messege-box")(React,appUsed);
                 }.bind(this),
                 error: function(xhr, status, err) {
                     console.error(this.props.url, status, err.toString());
@@ -28,13 +31,14 @@ module.exports = function(React, appUsed){
             if(this.state.api.categories){
                 for(var i=0, size= this.state.api.categories.length; i<size; i++){
                     var category = this.state.api.categories[i];
-                    categoryComponent.push(<a onClick={this.goCategoryArticles}>{category}</a>);
+                    categoryComponent.push(<a className="categoryList" onClick={this.goCategoryArticles}>{category}</a>);
                 }; 
             }
+
             return (
                 <div>
                 <h2>{this.state.api.title}</h2>
-                <p>日付け : {this.state.api.date}</p>
+                <p>日付け : {appUsed.setDateFormat(this.state.api.date)}</p>
                 <p>{categoryComponent}</p>
                 <div dangerouslySetInnerHTML={{__html: markdownText}}></div>
                 </div>

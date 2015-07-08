@@ -10,6 +10,9 @@ module.exports = function(React, appUsed){
                 cache: false,
                 success: function(json) {
                     this.setState({api: json});
+                    appUsed.result=json.result;
+                    appUsed.message=json.message;
+                    require("./messege-box")(React,appUsed);
                 }.bind(this),
                 error: function(xhr, status, err) {
                     console.error(this.props.url, status, err.toString());

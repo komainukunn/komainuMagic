@@ -10,8 +10,11 @@ module.exports = function(React, appUsed){
                 url: appUsed.url+"/api/categories",
                 dataType: 'json',
                 cache: false,
-                success: function(data) {
-                    this.setState({api: data});
+                success: function(json) {
+                    this.setState({api: json});
+                    appUsed.result=json.result;
+                    appUsed.message=json.message;
+                    require("./messege-box")(React,appUsed);
                 }.bind(this),
                 error: function(xhr, status, err) {
                     console.error(this.props.url, status, err.toString());
@@ -19,7 +22,7 @@ module.exports = function(React, appUsed){
             });
         },
         goCategoryArticles: function(e){
-            appUsed.selectCategoryName = e.target.innerHTML;
+            appUsed.selectCategoryName =  e.currentTarget.getAttribute("value");
             require("./categorys-box")(React,appUsed);
         },
         render: function() {
@@ -39,7 +42,7 @@ module.exports = function(React, appUsed){
                 };
                 for(var i=0, size=categoryNames.length; i<size; i++){
                     var category = categoryNames[i];
-                    categoryComponent.push(<li><a onClick={this.goCategoryArticles}>
+                    categoryComponent.push(<li><a onClick={this.goCategoryArticles} value={category}>
                                            {category}({categoryNamesCnt[category]})</a>
                                            </li>);
                 };
