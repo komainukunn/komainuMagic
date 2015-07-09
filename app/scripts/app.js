@@ -20,6 +20,13 @@ var appUsed = {
         
         date = year+"年 "+month+"月 " +day+"日("+week[weekNum]+")";
         return date;
+    },
+    form : {
+        id: "",
+        title : "",
+        text : "",
+        categories : [],
+        date : ""
     }
 }
 

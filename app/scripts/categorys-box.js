@@ -23,6 +23,8 @@ module.exports = function(React, appUsed){
         showAction(e){
             appUsed.selectArticle = e.currentTarget.getAttribute("value");
             require("./show-article-box")(React,appUsed);
+            require("./side-category-box")(React,appUsed);
+            require("./side-date-box")(React,appUsed);
         },
         render: function() {
             var articleComponent = [];
@@ -31,11 +33,12 @@ module.exports = function(React, appUsed){
                     articleComponent.push(
                         <tr onClick = {this.showAction}  value={this.state.api._ids[i]} >
                         <td >{this.state.api.titles[i]}</td>
-                        <td >{this.state.api.dates[i]}</td>
+                        <td >{appUsed.setDateFormat(this.state.api.dates[i])}</td>
                         </tr>
                     );
                 }
             }
+            articleComponent.sort();
             //テーブルのレイアウト
             return (
                 <div className="table-responsive">
@@ -53,5 +56,7 @@ module.exports = function(React, appUsed){
     });
     if(document.getElementById("brogContext")){
         React.render(<CategiryArticlesBox />, document.getElementById("brogContext"));
+        require("./side-category-box")(React,appUsed);
+        require("./side-date-box")(React,appUsed);
     }
 }

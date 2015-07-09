@@ -53,7 +53,7 @@ module.exports = function(React, appUsed){
             }
             return (
                 <aside>
-                <h4>カテゴリへのリンク</h4>
+                <h4>カレンダー</h4>
                 <ul class="list-unstyled">
                 {dateComponent}
                 </ul>

@@ -30,9 +30,12 @@ module.exports = function(React, appUsed){
             var categoryComponent = [];
             var categoryNames = [];
             var categoryNamesCnt=[];
-            if(this.state.api.categoryNames){
-                for(var i=0, size= this.state.api.categoryNames.length; i<size; i++){
-                    var category = this.state.api.categoryNames[i];
+
+            var items = this.state.api.categoryNames ? this.state.api.categoryNames:[];
+            if(items){
+                items.sort(); 
+                for(var i=0, size= items.length; i<size; i++){
+                    var category = items[i];
                     if(categoryNames.indexOf(category) < 0){
                         categoryNames.push(category);
                         categoryNamesCnt[category] = 1;
@@ -50,7 +53,7 @@ module.exports = function(React, appUsed){
             }
             return (
                 <aside>
-                <h4>カテゴリへのリンク</h4>
+                <h4>カテゴリ</h4>
                 <ul class="list-unstyled">
                 {categoryComponent}
                 </ul>

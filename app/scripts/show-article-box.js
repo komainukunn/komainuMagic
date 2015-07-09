@@ -7,7 +7,7 @@ module.exports = function(React, appUsed){
         },
         componentDidMount: function() {
             $.ajax({
-                url: appUsed.url+"/api/show?id="+appUsed.selectArticle+1,
+                url: appUsed.url+"/api/show?id="+appUsed.selectArticle,
                 dataType: 'json',
                 cache: false,
                 success: function(json) {

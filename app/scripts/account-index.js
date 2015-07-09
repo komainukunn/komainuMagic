@@ -1,27 +1,29 @@
 module.exports = function(React, appUsed){
-    var DateArticlesBox = React.createClass({
+    var AccountIndex = React.createClass({
         getInitialState: function() {
             return {api: []};
         },
         componentDidMount: function() {
             $.ajax({
-                url: appUsed.url+"/api/date?date="+appUsed.selectDate,
+                url: appUsed.url+"/account/api/",
                 dataType: 'json',
                 cache: false,
                 success: function(json) {
                     this.setState({api: json});
                     appUsed.result=json.result;
-                    appUsed.message=json.message;
-                    require("./messege-box")(React,appUsed);
+                    appUsed.message=json.message ? json.message : "";
+                    if(appUsed.message){
+                        require("./messege-box")(React,appUsed);
+                    }
                 }.bind(this),
                 error: function(xhr, status, err) {
                     console.error(this.props.url, status, err.toString());
                 }.bind(this)
             });
         },
-        showAction(e){
+        showAction: function(e){
             appUsed.selectArticle = e.currentTarget.getAttribute("value");
-            require("./show-article-box")(React,appUsed);
+            require("./account-show")(React,appUsed);
         },
         render: function() {
             var articleComponent = [];
@@ -50,9 +52,8 @@ module.exports = function(React, appUsed){
             );
         }
     });
+
     if(document.getElementById("brogContext")){
-        React.render(<DateArticlesBox />, document.getElementById("brogContext"));
-        require("./side-category-box")(React,appUsed);
-        require("./side-date-box")(React,appUsed);
+        React.render(<AccountIndex />, document.getElementById("brogContext"));
     }
 }
