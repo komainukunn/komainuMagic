@@ -3,8 +3,8 @@ var React = require("react");
 
 //共通で使う変数や関数を管理するjson
 var appUsed = {
-    //url :  "https://komainukunn.herokuapp.com",
-    url :  "http://localhost:5000",
+    url :  "https://komainukunn.herokuapp.com",
+    //url :  "http://localhost:5000",
    
     //日付けを変換してくれる
     setDateFormat : function(date){
@@ -27,6 +27,26 @@ var appUsed = {
         text : "",
         categories : [],
         date : ""
+    },
+    //日付け順にjsonのindexをソートする関数
+    sortDateIndexNum : function(json){
+        var datesSize = json.dates.length;
+        var indexs = [], indexCnt;
+        var a, b;
+        console.log(json);
+        for(var i=0;i<datesSize;i++){
+            indexCnt = 0;
+            a = new Date(json.dates[i]);
+            for(var j=0;j<datesSize;j++){
+                b = new Date(json.dates[j]);
+                if(a.getTime() < b.getTime()) {
+                    indexCnt++;
+                }else{
+                }
+            }
+            indexs[indexCnt] = i;
+        }
+        return indexs;
     }
 }
 

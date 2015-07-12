@@ -29,11 +29,12 @@ module.exports = function(React, appUsed){
         render: function() {
             var articleComponent = [];
             if(this.state.api._ids){
+                var indexs = appUsed.sortDateIndexNum(this.state.api);
                 for(var i=0;i<this.state.api._ids.length;i++){
                     articleComponent.push(
-                        <tr onClick = {this.showAction}  value={this.state.api._ids[i]} >
-                        <td >{this.state.api.titles[i]}</td>
-                        <td >{appUsed.setDateFormat(this.state.api.dates[i])}</td>
+                        <tr onClick = {this.showAction}  value={this.state.api._ids[indexs[i]]} >
+                        <td >{this.state.api.titles[indexs[i]]}</td>
+                        <td >{appUsed.setDateFormat(this.state.api.dates[indexs[i]])}</td>
                         </tr>
                     );
                 }
