@@ -34,13 +34,17 @@ module.exports = function(React, appUsed){
                     categoryComponent.push(<a className="categoryList" onClick={this.goCategoryArticles}>{category}</a>);
                 }; 
             }
-
+            if(this.state.api.result!="success"){
+                return <div></div>
+            }
             return (
                 <div>
                 <h2>{this.state.api.title}</h2>
                 <p>日付け : {appUsed.setDateFormat(this.state.api.date)}</p>
                 <p>{categoryComponent}</p>
                 <div dangerouslySetInnerHTML={{__html: markdownText}}></div>
+                <br/>
+                <p>link : {appUsed.url + "/?id=" + this.state.api._id}</p>
                 </div>
             );
         }

@@ -39,14 +39,19 @@ module.exports = function(React, appUsed){
             }
         }
     });
+    var urlParams = location.href.split('=');
 
     if(document.getElementById("component")){
         appUsed.appState = 0;
         React.render(<MainController />, document.getElementById("component"));
-        require("./new-article-box")(React,appUsed);
         require("./side-category-box")(React,appUsed);
         require("./side-date-box")(React,appUsed);
-        require("./messege-box")(React,appUsed);
+        if(urlParams[0] == appUsed.url+"/?id"){
+            appUsed.selectArticle = urlParams[1];
+            require("./show-article-box")(React,appUsed);
+        }else{
+            require("./new-article-box")(React,appUsed);
+        }
     }
     if(document.getElementById("componentLogin")){
         appUsed.appState = 1;

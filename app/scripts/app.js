@@ -1,10 +1,11 @@
 
 var React = require("react");
 
+
 //共通で使う変数や関数を管理するjson
 var appUsed = {
     url :  "https://komainukunn.herokuapp.com",
-    //url :  "http://localhost:5000",
+    url :  "http://localhost:5000",
    
     //日付けを変換してくれる
     setDateFormat : function(date){
